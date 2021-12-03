@@ -98,3 +98,19 @@ def extract_markov_transition(events: list, mk_len = 2):
     trans_prob[k] = dict_text[k]/word_counts[(k[0],)]
 
   return trans_prob   
+
+def get_overlap_sparse_mtx(indx, jndx, cnt_vect, 
+                          sub_indx, sub_jndx):
+    """ To get the subset of original matrix for given indx and jndx
+    """
+    ov_indx = []
+    ov_jndx = []
+    ov_cnt = []
+    for i,j in zip(k,l):
+        if np.sum((a == i) & (b == j)) == 1:
+            ov_indx.append(a[a == i][0])
+            ov_jndx.append(b[b == j][0])
+            ov_cnt.append(c[(a == i) & (b == j)][0])
+            
+    return np.array(ov_indx), np.array(ov_jndx), np.array(ov_cnt)
+    
